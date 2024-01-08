@@ -5,7 +5,7 @@ const ProductList = () => {
 const [products,setProducts] = useState([]);
 
 useEffect(()=>{
-    axios.get('http://localhost:3003/products/all')
+    axios.get('http://localhost:3003/products/read')
     .then(response=>setProducts(response.data)
  )
  .catch(error =>console.error('error occures',error))
