@@ -5,10 +5,16 @@ const ProductList = () => {
 const [products,setProducts] = useState([]);
 
 useEffect(()=>{
-    axios.get('http://localhost:3003/products/read')
-    .then(response=>setProducts(response.data)
- )
- .catch(error =>console.error('error occures',error))
+
+async function requestData() {
+    const request  = await  axios.get('http://localhost:3003/products/read')
+    console.log(request.data)
+
+    setProducts(request.data);
+    return request;
+}
+   
+  requestData()  
 },[]);
   return (
     <div> 
