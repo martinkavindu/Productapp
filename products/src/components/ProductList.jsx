@@ -20,13 +20,24 @@ async function requestData() {
     <div> 
         <h1> All products</h1>
 
-        <ul>
-            {
-                products.map(products=>(
-                    <li key={products.id} >{products.name}</li>
-                ))
-            }
-        </ul>
+        <table className='table-bordered'>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {products.map(product => (
+                        <tr key={product.id}>
+                            <td>{product.name}</td>
+                            <td>{product.description}</td>
+                            <td>{product.price}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
     </div>
   )
 }
