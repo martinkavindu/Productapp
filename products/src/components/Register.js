@@ -44,7 +44,7 @@ const Register = () => {
           axios.request(config)
           .then((response) => {
           navigate('/')
-            console.log(JSON.stringify(response.data));
+        ;
           })
           .catch((error) => {
             console.log(error);

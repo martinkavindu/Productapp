@@ -1,50 +1,70 @@
-import React, { useState } from 'react'
-import validation from './LoginValidation'
+import React, { useState } from 'react';
+import validation from './LoginValidation';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 const Login = () => {
-const[values,setValues ] =useState({
-    email:'',
-    password:''
+  const [values, setValues] = useState({
+    email: '',
+    password: ''
+  });
 
-}
-)
-const handleInput = (e)=>{
-   setValues(prev=>({...prev,[e.target.name]:[e.target.value]}))
+  const [loginMessage, setLoginMessage] = useState('');
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
-}
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: value
+    }));
+  };
 
-const[errors,setErrors] = useState({})
-
- const handleSubmit = (e) =>{
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setErrors(validation(values));
-    
- }
+
+    try {
+      const response = await axios.post('http://localhost:3003/user/login', values, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      setLoginMessage('Login success!');
+      navigate('/allproducts');
+      console.log(JSON.stringify(response.data));
+    } catch (error) {
+      setLoginMessage('Invalid email or password');
+      console.log(error);
+    }
+  };
 
   return (
     <div className='login'>
-        <h3>Welcome back! Login</h3>
-<form action='' onSubmit={handleSubmit}>
-
-<div class="form-group">
-    <label for="email">Email address:</label>
-    <input type="email" onChange={handleInput} name='email' value={values.email} class="form-control" id="email"/>
-  </div>
-  {errors.email  && <span className='text-danger'>{errors.email} </span>}
-  <div class="form-group">
-    <label for="pwd">Password:</label>
-    <input type="password" onChange={handleInput} value={values.password} name='password' class="form-control" id="pwd"/>
-  </div>
-{errors.password && <span className='text-danger'> {errors.password}</span>}
-  <div className='mt-5'>
-  <button type="submit" class="btn btn-primary">Login</button>
-  </div>
- <div>
-    <p>Dont have account <a href=''>Register</a></p>
- </div>
-</form>
-
+      <h3>Welcome back! Login</h3>
+      <form action='' onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="email">Email address:</label>
+          <input type="email" onChange={handleInput} name='email' value={values.email} className="form-control" id="email" />
+        </div>
+        {errors.email && <span className='text-danger'>{errors.email} </span>}
+        <div className="form-group">
+          <label htmlFor="pwd">Password:</label>
+          <input type="password" onChange={handleInput} name='password' value={values.password} className="form-control" id="pwd" />
+        </div>
+        {errors.password && <span className='text-danger'> {errors.password}</span>}
+        <div className='mt-5'>
+          <button type="submit" className="btn btn-primary">Login</button>
+        </div>
+        {loginMessage && <p className={loginMessage.includes('success') ? 'text-success' : 'text-danger'}>{loginMessage}</p>}
+        <div>
+          <p>Don't have an account? <a href='/register'>Register</a></p>
+        </div>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
