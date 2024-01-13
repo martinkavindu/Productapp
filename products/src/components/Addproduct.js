@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
+    const navigate = useNavigate()
     const [newProduct, setNewProduct] = useState({ name: '', description: '', price: '' });
     const [message, setMessage] = useState('');
 
@@ -12,6 +14,7 @@ const AddProduct = () => {
     const handleCreateProduct = () => {
         axios.post('http://localhost:3003/products/create', newProduct)
             .then(response => {
+                navigate('/allproducts')
                 console.log(response.data);
                 setMessage('Product added successfully!');
             })
@@ -25,20 +28,20 @@ const AddProduct = () => {
         <div>
             <h2>Add products</h2>
 
-            <form>
+            <form className=''>
                 <label>Name:</label>
-                <input type="text" name="name" onChange={handleChange} />
+                <input type="text" name="name" onChange={handleChange}className='form-control'/>
 
                 <label>Description:</label>
-                <input type="text" name="description" onChange={handleChange} />
+                <input type="text" name="description" onChange={handleChange} className='form-control' />
 
                 <label>Price:</label>
-                <input type="text" name="price" onChange={handleChange} />
+                <input type="text" name="price" onChange={handleChange} className='form-control'/>
 
-                <button type="button" onClick={handleCreateProduct}>Create Product</button>
+                <button type="button" className='btn btn-primary mt-5' onClick={handleCreateProduct}>Create Product</button>
             </form>
 
-            {message && <p>{message}</p>}
+            {message && <p className='text-success'>{message}</p>}
         </div>
     );
 }

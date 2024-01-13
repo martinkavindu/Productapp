@@ -25,7 +25,7 @@ const Register = () => {
 
         let config = {
             method: 'post',
-            url: 'http://localhost:3003/register/user',
+            url: 'http://localhost:3007/register/user',
             headers: {
                 'Content-Type': 'application/json'
             },

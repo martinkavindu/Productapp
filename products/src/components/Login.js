@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const [values, setValues] = useState({
+  const [credentials, setCredentials] = useState({
     email: '',
     password: ''
   });
@@ -15,25 +15,32 @@ const Login = () => {
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-    setValues((prevValues) => ({
-      ...prevValues,
+    setCredentials((prevCredentials) => ({
+      ...prevCredentials,
       [name]: value
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors(validation(values));
+    setErrors(validation(credentials));
 
     try {
-      const response = await axios.post('http://localhost:3003/user/login', values, {
+      const response = await axios.post('http://localhost:3007/user/login', credentials, {
         headers: {
           'Content-Type': 'application/json'
         }
       });
 
-      setLoginMessage('Login success!');
-      navigate('/allproducts');
+      const { message, token } = response.data;
+
+      setLoginMessage(message);
+
+      if (token) {
+        localStorage.setItem('token', token);
+        navigate('/allproducts');
+      }
+
       console.log(JSON.stringify(response.data));
     } catch (error) {
       setLoginMessage('Invalid email or password');
@@ -47,12 +54,12 @@ const Login = () => {
       <form action='' onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email address:</label>
-          <input type="email" onChange={handleInput} name='email' value={values.email} className="form-control" id="email" />
+          <input type="email" onChange={handleInput} name='email' value={credentials.email} className="form-control" id="email" />
         </div>
         {errors.email && <span className='text-danger'>{errors.email} </span>}
         <div className="form-group">
           <label htmlFor="pwd">Password:</label>
-          <input type="password" onChange={handleInput} name='password' value={values.password} className="form-control" id="pwd" />
+          <input type="password" onChange={handleInput} name='password' value={credentials.password} className="form-control" id="pwd" />
         </div>
         {errors.password && <span className='text-danger'> {errors.password}</span>}
         <div className='mt-5'>

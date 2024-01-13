@@ -7,7 +7,7 @@ const [products,setProducts] = useState([]);
 useEffect(()=>{
 
 async function requestData() {
-    const request  = await  axios.get('http://localhost:3003/products/read')
+    const request  = await  axios.get('http://localhost:3007/products/read')
     console.log(request.data)
 
     setProducts(request.data);
@@ -19,8 +19,8 @@ async function requestData() {
   return (
     <div> 
         <h1> All products</h1>
-
-        <table className='table-bordered'>
+<a href='/addproduct'><button className='btn btn-primary'>Add new product</button></a>
+        <table className=' table table-bordered'>
                 <thead>
                     <tr>
                         <th>Name</th>
