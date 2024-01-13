@@ -6,13 +6,19 @@ const AddProduct = () => {
     const navigate = useNavigate()
     const [newProduct, setNewProduct] = useState({ name: '', description: '', price: '' });
     const [message, setMessage] = useState('');
+    const accessToken = localStorage.getItem('accessToken');
 
     const handleChange = (e) => {
         setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
     }
 
     const handleCreateProduct = () => {
-        axios.post('http://localhost:3003/products/create', newProduct)
+        axios.post('http://localhost:3007/products/create', newProduct,{
+            headers:{
+                'authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json',
+            }
+        })
             .then(response => {
                 navigate('/allproducts')
                 console.log(response.data);

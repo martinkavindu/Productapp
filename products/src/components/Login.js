@@ -37,7 +37,7 @@ const Login = () => {
       setLoginMessage(message);
 
       if (token) {
-        localStorage.setItem('token', token);
+        localStorage.setItem('accessToken', token);
         navigate('/allproducts');
       }
 
