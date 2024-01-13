@@ -31,6 +31,7 @@ const AddProduct = () => {
     }
 
     return (
+        <>
         <div>
             <h2>Add products</h2>
 
@@ -49,6 +50,7 @@ const AddProduct = () => {
 
             {message && <p className='text-success'>{message}</p>}
         </div>
+        </>
     );
 }
 

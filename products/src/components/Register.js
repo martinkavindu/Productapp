@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import validation from './Registervalidation';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import HeaderSection from './Headersection';
 
 const Register = () => {
     const [values, setValues] = useState({
@@ -53,6 +54,8 @@ const Register = () => {
     };
 
     return (
+        <>
+        <HeaderSection/>
         <div className="login">
             <h3>Register account</h3>
             <form action="" onSubmit={handleSubmit}>
@@ -79,11 +82,12 @@ const Register = () => {
                 </div>
                 <div>
                     <p>
-                        Already have an account <a href="">Login</a>
+                        Already have an account <a href="/">Login</a>
                     </p>
                 </div>
             </form>
         </div>
+        </>
     );
 };
 

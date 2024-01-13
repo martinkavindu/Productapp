@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import HeaderSection from './Headersection';
 
 const UpdateProduct = () => {
   const { productId } = useParams();
@@ -82,6 +83,8 @@ const UpdateProduct = () => {
   };
 
   return (
+    <>
+    <HeaderSection/>
     <div>
       <h1>Update Product</h1>
       <form onSubmit={handleFormSubmit} >
@@ -117,6 +120,7 @@ const UpdateProduct = () => {
         <button type="submit" className='btn btn-primary mt-5'>Update Product</button>
       </form>
     </div>
+    </>
   );
 };
 

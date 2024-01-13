@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import 'react-toastify/dist/ReactToastify.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import { useNavigate } from 'react-router-dom';
+import HeaderSection from './Headersection';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -88,15 +89,15 @@ const ProductList = () => {
   }
   return (
     <div>
+      <HeaderSection/>
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
         <p>Error: {error}</p>
       ) : (
         <>
-          <h1>All products</h1>
-
           <p onClick={handleLogout} className='btn btn-success'> Logout</p>
+          <h1>All products</h1>
           <a href='/addproduct'><button className='btn btn-primary'>Add new product</button></a>
           <table className='table table-bordered mt-5'>
             <thead>
