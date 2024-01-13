@@ -1,0 +1,25 @@
+.main{
+    background: url(../assesets/home2.jpg) no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-position: 50% 50%;
+    width: 100%; 
+}
+
+.btn1{
+    height: 45px;
+    width: 35%;
+    border: none;
+    outline: none;
+    background-color: rgb(248, 26, 92);
+    font-weight: 600;
+    color: white;
+    border-radius: 10px;
+}
+.home h3{
+    font-size: 20px;
+}
+.home{
+    margin-top: -20rem;
+    margin-left: -40rem;
+}
