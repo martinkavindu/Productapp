@@ -16,7 +16,7 @@ function HeaderSection() {
     <nav className="navbar navbar-expand-lg">
       <div className="container">
         <a className="navbar-brand" href="#">
-          Happy Gloceries
+        <i class="ri-cake-3-fill"></i> Gloceries
         </a>
         <button
           className="navbar-toggler"
@@ -59,13 +59,13 @@ function HeaderSection() {
             {isAuthenticated ? (
               <li className="nav-item">
                 <a className="nav-link" onClick={handleLogout}>
-                  Logout
+                <i class="ri-account-box-fill" style={{fontSize:'18px'}}></i>  Logout
                 </a>
               </li>
             ) : (
               <li className="nav-item">
                 <a className="nav-link" href="/login">
-                  Login
+                <i class="ri-account-box-fill" style={{fontSize:'18px'}}></i>   Login
                 </a>
               </li>
             )}
