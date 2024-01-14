@@ -83,10 +83,6 @@ const ProductList = () => {
     }
   };
 
-  const handleLogout = () =>{
-    localStorage.removeItem('accessToken');
-    navigate('/')
-  }
   return (
     <div>
       <HeaderSection/>
@@ -96,7 +92,6 @@ const ProductList = () => {
         <p>Error: {error}</p>
       ) : (
         <>
-          <p onClick={handleLogout} className='btn btn-success'> Logout</p>
           <h1>All products</h1>
           <a href='/addproduct'><button className='btn btn-primary'>Add new product</button></a>
           <table className='table table-bordered mt-5'>

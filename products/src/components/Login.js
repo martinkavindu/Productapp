@@ -41,7 +41,7 @@ const Login = () => {
 
       if (token) {
         localStorage.setItem('accessToken', token);
-        navigate('/allproducts');
+        navigate('/');
       }
 
       console.log(JSON.stringify(response.data));

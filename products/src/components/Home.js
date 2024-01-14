@@ -7,7 +7,7 @@ const Home = () => {
     <HeaderSection/>
     <section className='main'>
         <div className='home'>
-        <h3>Snack on fresh fruits and vegetables <br/> for energy boost </h3> 
+        <h3>Snack on fresh fruits & vegetables <br/> for energy boost </h3> 
         <button className='btn1'>learn more</button>
         </div>
 

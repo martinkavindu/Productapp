@@ -1,6 +1,6 @@
 .navbar-brand{
-    font-size: 1.8rem;
-    color: black;
+    font-size: 2rem !important;
+    color: orangered !important;
     font-family: 'IBM Plex Serif'
 }
 .navbar-brand:hover{
